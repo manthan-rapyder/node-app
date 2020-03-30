@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nodeapp
+  name: nodeappmanthan
   labels:
-    app: nodeapp
+    app: nodeappmanthan
 spec:
   containers:
     - name: nodeapp
-      image: kammana/nodeapp:tagVersion
+      image: manthanrapyder/nodeappdemo:tagVersion
       ports:
         - containerPort: 8080
