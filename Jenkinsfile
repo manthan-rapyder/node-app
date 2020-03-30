@@ -23,21 +23,19 @@ pipeline {
 		sh "./changeTag.sh ${DOCKER_TAG}"
                 }
             }
-		stage('Deploy'){
+		        stage('Deploy'){
 			steps{
-				sh "sudo cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/services.yml /home/ubuntu"
-				sh "sudo cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/node-app-pod.yml /home/ubuntu"
-			script{
+				script{
 					try{
-						sh "sudo kubectl apply -f /home/ubuntu/node-app-pod.yml"
-						sh "sudo kubectl apply -f /home/ubuntu/services.yml"
+					sh "sudo kubectl apply -f /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/node-app-pod.yml"
+					sh "sudo kubectl apply -f /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/services.yml"
 					}catch(error){
-						"sudo kubectl apply -f /home/ubuntu/node-app-pod.yml"
-						"sudo kubectl apply -f /home/ubuntu/services.yml"
+					sh "sudo kubectl create -f/var/lib/jenkins/workspace/k8s-ci-cd-pipeline/node-app-pod.yml
+					sh "sudo kubectl create -f /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/services.yml"					
+					}
 					}
 				}
 			}
-		    }
     }
 }
 
