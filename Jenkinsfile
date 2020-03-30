@@ -30,7 +30,7 @@ pipeline {
 					sh "sudo kubectl apply -f /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/node-app-pod.yml"
 					sh "sudo kubectl apply -f /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/services.yml"
 					}catch(error){
-					sh "sudo kubectl create -f/var/lib/jenkins/workspace/k8s-ci-cd-pipeline/node-app-pod.yml
+					sh "sudo kubectl create -f/var/lib/jenkins/workspace/k8s-ci-cd-pipeline/node-app-pod.yml"
 					sh "sudo kubectl create -f /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/services.yml"					
 					}
 					}
