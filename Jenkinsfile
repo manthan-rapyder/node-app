@@ -21,8 +21,8 @@ pipeline {
             steps{
 		sh "chmod +x changeTag.sh"
 		sh "./changeTag.sh ${DOCKER_TAG}"
-		sh "cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/services.yml /home/ubuntu"
-	        sh "cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/node-app-pod.yml /home/ubuntu/"
+		sh "sudo cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/services.yml /home/ubuntu"
+	        sh "sudo cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/node-app-pod.yml /home/ubuntu/"
 		    script{
 			    try{
 			    sh "sudo kubectl apply -f ."
