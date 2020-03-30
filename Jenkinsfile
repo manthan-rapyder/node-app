@@ -22,10 +22,10 @@ pipeline {
 		sh "git clone https://github.com/manthan-rapyder/node-app.git"
 		sh "chmod +x changeTag.sh"
 		sh "./changeTag.sh ${DOCKER_TAG}"
-		sh "cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/pods.yml ~/"
-		sh "cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/node-app-pod.yml ~/"
-		sh "kubectl apply -f ."
-		sh "kubectl create -f ."
+		sh "cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/pods.yml /home/ubuntu"
+		sh "cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/services.yml /home/ubuntu"
+		sh "kubectl apply -f pods.yml"
+		sh "kubectl create -f services.yml"
                 }
             }
     }
