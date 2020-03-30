@@ -23,19 +23,11 @@ pipeline {
 		sh "./changeTag.sh ${DOCKER_TAG}"
                 }
             }
-		        stage('Deploy'){
-			steps{
-				script{
-					try{
-					sh "sudo kubectl apply -f /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/node-app-pod.yml"
-					sh "sudo kubectl apply -f /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/services.yml"
-					}catch(error){
-					sh "sudo kubectl create -f/var/lib/jenkins/workspace/k8s-ci-cd-pipeline/node-app-pod.yml"
-					sh "sudo kubectl create -f /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/services.yml"					
-					}
-					}
-				}
-			}
+	    stage('K8s Check'){
+		sh "sudo kubectl get nodes"
+		sh "sudo kubectl get pods --all-namespaces"
+	    }
+		        
     }
 }
 
