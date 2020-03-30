@@ -21,8 +21,8 @@ pipeline {
             steps{
 		sh "chmod +x changeTag.sh"
 		sh "./changeTag.sh ${DOCKER_TAG}"
-		sh "sudo kubectl apply -f node-app-pod.yml"
-		sh "sudo kubectl create -f services.yml"
+		sh "sudo kubectl apply -f ."
+		sh "sudo kubectl create -f ."
                 }
             }
     }
