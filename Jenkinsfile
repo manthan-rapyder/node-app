@@ -25,7 +25,6 @@ pipeline {
             }
 	stage('K8s Check'){
 		steps{
-		sh "sudo kubectl get nodes"
 		sh "sudo kubectl get pods --all-namespaces"
 		}    
 	}
