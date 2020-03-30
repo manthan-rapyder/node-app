@@ -24,9 +24,8 @@ pipeline {
 		sh "./changeTag.sh ${DOCKER_TAG}"
 		sh "sudo cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/pods.yml /home/ubuntu"
 		sh "sudo cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/services.yml /home/ubuntu"
-		sh "cd /home/ubuntu"
-		sh "sudo kubectl apply -f pods.yml"
-		sh "sudo kubectl create -f services.yml"
+		sh "sudo kubectl apply -f /home/ubuntu/pods.yml"
+		sh "sudo kubectl create -f /home/ubuntu/services.yml"
                 }
             }
     }
