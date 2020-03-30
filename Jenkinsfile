@@ -23,10 +23,12 @@ pipeline {
 		sh "./changeTag.sh ${DOCKER_TAG}"
                 }
             }
-	    stage('K8s Check'){
+	stage('K8s Check'){
+		steps{
 		sh "sudo kubectl get nodes"
 		sh "sudo kubectl get pods --all-namespaces"
-	    }
+		}    
+	}
 		        
     }
 }
