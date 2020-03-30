@@ -29,9 +29,11 @@ pipeline {
 				sh "sudo cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/node-app-pod.yml /home/ubuntu"
 			script{
 					try{
-						sh "sudo kubectl apply -f ."
+						sh "sudo kubectl apply -f /home/ubuntu/node-app-pod.yml"
+						sh "sudo kubectl apply -f /home/ubuntu/services.yml"
 					}catch(error){
-						sh "sudo kubectl create -f ."
+						"sudo kubectl apply -f /home/ubuntu/node-app-pod.yml"
+						"sudo kubectl apply -f /home/ubuntu/services.yml"
 					}
 				}
 			}
