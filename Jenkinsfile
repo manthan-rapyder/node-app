@@ -19,12 +19,13 @@ pipeline {
         }
 	stage('K8s Deployment'){
             steps{
-                sh "git clone https://github.com/manthan-rapyder/node-app.git"
-		sh "cd node-app"
-		sh "chmod +x changeTag.sh"
+		sh "sudo su"
+                sh "sudo git clone https://github.com/manthan-rapyder/node-app.git"
+		sh "sudo cd node-app"
+		sh "sudo chmod +x changeTag.sh"
 		sh "./changeTag.sh ${DOCKER_TAG}"
-		sh "kubectl apply -f ."
-		sh "kubectl create -f ."
+		sh "sudo kubectl apply -f ."
+		sh "sudo kubectl create -f ."
                 }
             }
     }
