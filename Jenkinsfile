@@ -19,23 +19,22 @@ pipeline {
         }
 	stage('Change Files'){
             steps{
-                sh "git clone https://github.com/manthan-rapyder/node-app.git"
-				sh "chmod +x changeTag.sh"
-				sh "./changeTag.sh ${DOCKER_TAG}"
+                sh "chmod +x changeTag.sh"
+		sh "./changeTag.sh ${DOCKER_TAG}"
                 }
             }
 		stage('Deploy'){
 			steps{
 				sh "cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/services.yml /home/ubuntu"
 				sh "cp /var/lib/jenkins/workspace/k8s-ci-cd-pipeline/node-app-pod.yml /home/ubuntu"
-				script{
-						try{
-							sh "sudo kubectl apply -f ."
-						}catch(error){
-							sh "sudo kubectl create -f ."
-						}
+			script{
+					try{
+						sh "sudo kubectl apply -f ."
+					}catch(error){
+						sh "sudo kubectl create -f ."
 					}
-			    }
+				}
+			}
 		    }
     }
 }
