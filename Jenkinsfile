@@ -19,7 +19,6 @@ pipeline {
         }
 	stage('K8s Deployment'){
             steps{
-		sh "git clone https://github.com/manthan-rapyder/node-app.git"
 		sh "chmod +x changeTag.sh"
 		sh "./changeTag.sh ${DOCKER_TAG}"
 		sh "sudo kubectl apply -f node-app-pod.yml"
