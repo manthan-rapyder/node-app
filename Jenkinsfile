@@ -25,8 +25,17 @@ pipeline {
             }
 	stage('K8s Check'){
 		steps{
-		sh "sudo kubectl get pods --all-namespaces"
-		}    
+		sshagent(['k8s-master']) {
+			sh "scp -o StrictHostKeyChecking=no node-app-pod.yml services.yml admin@54.175.251.189:/home/admin/"
+			script{
+					try{
+					sh "ssh admin@54.175.251.189 kubectl apply -f ."
+					}catch(error){
+					sh "ssh admin@54.175.251.189 kubectl create -f ."
+					}
+				}
+			}
+		}
 	}
 		        
     }
