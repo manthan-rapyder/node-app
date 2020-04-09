@@ -26,12 +26,12 @@ pipeline {
 	stage('K8s Check'){
 		steps{
 		sshagent(['k8s-master']) {
-			sh "scp -o StrictHostKeyChecking=no node-app-pod.yml services.yml admin@54.175.251.189:/home/admin/"
+			sh "scp -o StrictHostKeyChecking=no node-app-pod.yml services.yml admin@18.212.254.165:/home/admin/"
 			script{
 					try{
-					sh "ssh admin@54.175.251.189 kubectl apply -f ."
+					sh "ssh admin@518.212.254.165 kubectl apply -f ."
 					}catch(error){
-					sh "ssh admin@54.175.251.189 kubectl create -f ."
+					sh "ssh admin@18.212.254.165 kubectl create -f ."
 					}
 				}
 			}
